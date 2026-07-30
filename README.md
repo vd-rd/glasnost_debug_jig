@@ -36,6 +36,23 @@ switch line, USB power descriptor).
 - `docs/` — [`ARCHITECTURE.md`](docs/ARCHITECTURE.md) (firmware design/module
   layout) and [`PROTOCOL.md`](docs/PROTOCOL.md) (the USB wire protocol spec).
 
+## Releases
+
+Tagged releases (see [GitHub Releases](https://github.com/vd-rd/glasnost_debug_jig/releases))
+attach two prebuilt binaries so you don't need podman/ESP-IDF or a Python
+environment just to try the jig:
+
+- `glasnost_jig-<version>-esp32s3-merged.bin` — bootloader + partition table
+  + app merged into one flashable image (via `idf.py merge-bin`). Flash it
+  directly with `esptool.py --chip esp32s3 write_flash 0x0 <file>`, no build
+  step required.
+- `jigctl-<version>-linux-x86_64` — standalone PyInstaller build of
+  `host/jigctl.py`; `chmod +x` and run it directly, no `pip install` needed.
+
+Building from source (below) is still the way to go if you're changing the
+firmware or want other platforms for `jigctl`. See
+[`docs/RELEASING.md`](docs/RELEASING.md) for how releases are cut.
+
 ## Quickstart
 
 ### Firmware: build / flash / monitor
