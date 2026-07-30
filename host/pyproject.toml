@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jigctl"
+version = "0.1.0"
+description = "Host-side control CLI for the glasnost debug jig"
+requires-python = ">=3.8"
+dependencies = ["pyserial>=3.5"]
+
+[project.scripts]
+jigctl = "jigctl:main"
+
+[tool.setuptools]
+py-modules = ["jigctl"]

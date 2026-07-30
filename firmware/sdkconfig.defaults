@@ -1,0 +1,14 @@
+CONFIG_IDF_TARGET="esp32s3"
+
+# UART0/log console must stay on the classic UART pins, not the
+# USB-Serial-JTAG peripheral: on the S3 that peripheral shares the D+/D-
+# pins with the USB-OTG (dwc2) block that esp_tinyusb drives for the
+# composite CDC device, so the two can't both be live at once.
+CONFIG_ESP_CONSOLE_UART_DEFAULT=y
+CONFIG_ESP_CONSOLE_UART_NUM=0
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
+
+CONFIG_TINYUSB_CDC_ENABLED=y
+CONFIG_TINYUSB_CDC_COUNT=2
+CONFIG_TINYUSB_DESC_MANUFACTURER_STRING="Glasnost"
+CONFIG_TINYUSB_DESC_PRODUCT_STRING="Glasnost Debug Jig"
